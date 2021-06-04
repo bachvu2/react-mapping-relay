@@ -7,7 +7,11 @@ import { FragmentRefs } from "relay-runtime";
 export type AlbumListPageQueryVariables = {};
 export type AlbumListPageQueryResponse = {
     readonly albums: {
-        readonly " $fragmentRefs": FragmentRefs<"AlbumList_albums">;
+        readonly data: ReadonlyArray<{
+            readonly id: string | null;
+            readonly title: string | null;
+        } | null> | null;
+        readonly " $fragmentRefs": FragmentRefs<"AlbumList_albumsPage">;
     } | null;
 };
 export type AlbumListPageQuery = {
@@ -20,24 +24,49 @@ export type AlbumListPageQuery = {
 /*
 query AlbumListPageQuery {
   albums {
-    ...AlbumList_albums
+    data {
+      id
+      title
+    }
+    ...AlbumList_albumsPage
   }
 }
 
-fragment AlbumList_albums on AlbumsPage {
+fragment AlbumList_albumsPage on AlbumsPage {
   data {
-    ...Album_album
     id
+    title
   }
-}
-
-fragment Album_album on Album {
-  id
-  title
 }
 */
 
-const node: ConcreteRequest = {
+const node: ConcreteRequest = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "Album",
+  "kind": "LinkedField",
+  "name": "data",
+  "plural": true,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "id",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "title",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+};
+return {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
@@ -52,10 +81,11 @@ const node: ConcreteRequest = {
         "name": "albums",
         "plural": false,
         "selections": [
+          (v0/*: any*/),
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "AlbumList_albums"
+            "name": "AlbumList_albumsPage"
           }
         ],
         "storageKey": null
@@ -78,44 +108,21 @@ const node: ConcreteRequest = {
         "name": "albums",
         "plural": false,
         "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": "Album",
-            "kind": "LinkedField",
-            "name": "data",
-            "plural": true,
-            "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "title",
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
-          }
+          (v0/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "c3e6a910ce795897537026ce99b391eb",
+    "cacheID": "dc3a635a8c282b58242ba138a24a73d4",
     "id": null,
     "metadata": {},
     "name": "AlbumListPageQuery",
     "operationKind": "query",
-    "text": "query AlbumListPageQuery {\n  albums {\n    ...AlbumList_albums\n  }\n}\n\nfragment AlbumList_albums on AlbumsPage {\n  data {\n    ...Album_album\n    id\n  }\n}\n\nfragment Album_album on Album {\n  id\n  title\n}\n"
+    "text": "query AlbumListPageQuery {\n  albums {\n    data {\n      id\n      title\n    }\n    ...AlbumList_albumsPage\n  }\n}\n\nfragment AlbumList_albumsPage on AlbumsPage {\n  data {\n    id\n    title\n  }\n}\n"
   }
 };
-(node as any).hash = '0ec5bbadb31ad3833aeb880ccf27db48';
+})();
+(node as any).hash = 'e403be04ed8173ff7f93b679a5768871';
 export default node;
