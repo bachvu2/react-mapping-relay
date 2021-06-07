@@ -10,6 +10,8 @@ import graphql from 'babel-plugin-relay/macro';
 import { ErrorBoundary } from "react-error-boundary";
 import * as AlbumListPageQuery from "./__generated__/AlbumListPageQuery.graphql";
 import AlbumList from './AlbumList';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import styles from './AlbumListPage.module.css';
 
 interface Props {
   initialQueryRef: PreloadedQuery<AlbumListPageQuery.AlbumListPageQuery>;
@@ -20,7 +22,7 @@ function AlbumListPage(props: Props) {
     graphql`
       query AlbumListPageQuery{
         albums {
-          data{
+          data {
             id
             title
           }
@@ -30,7 +32,7 @@ function AlbumListPage(props: Props) {
     `,
     props.initialQueryRef
   );
-  console.log("xxxx", data)
+  // console.log("xxxx", data)
 
   const albums = data.albums;
   if (!albums) {
@@ -43,9 +45,16 @@ function AlbumListPage(props: Props) {
 }
 
 export default function AlbumListPageWrapper({ initialQueryRef }: Props) {
+  const renderLoading = () => {
+    return (
+      <div className={styles.wapperLoading}>
+        <CircularProgress />
+      </div>
+    )
+  }
   return (
     <ErrorBoundary fallbackRender={({ error }) => <div>{error.message}</div>}>
-      <React.Suspense fallback={<div>Loading</div>}>
+      <React.Suspense fallback={renderLoading}>
         <AlbumListPage initialQueryRef={initialQueryRef} />
       </React.Suspense>
     </ErrorBoundary>

@@ -14,7 +14,6 @@ async function fetchGraphQL(text, variables) {
         variables,
       }),
     });
-    console.log("gogogo",response)
     // Get the response as JSON
     return await response.json();
   }

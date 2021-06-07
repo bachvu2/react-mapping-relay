@@ -8,6 +8,13 @@ export type AlbumList_albumsPage = {
     readonly data: ReadonlyArray<{
         readonly id: string | null;
         readonly title: string | null;
+        readonly user: {
+            readonly id: string | null;
+            readonly name: string | null;
+            readonly username: string | null;
+            readonly email: string | null;
+            readonly website: string | null;
+        } | null;
     } | null> | null;
     readonly " $refType": "AlbumList_albumsPage";
 };
@@ -19,7 +26,15 @@ export type AlbumList_albumsPage$key = {
 
 
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -33,18 +48,52 @@ const node: ReaderFragment = {
       "name": "data",
       "plural": true,
       "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "id",
-          "storageKey": null
-        },
+        (v0/*: any*/),
         {
           "alias": null,
           "args": null,
           "kind": "ScalarField",
           "name": "title",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "User",
+          "kind": "LinkedField",
+          "name": "user",
+          "plural": false,
+          "selections": [
+            (v0/*: any*/),
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "name",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "username",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "email",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "website",
+              "storageKey": null
+            }
+          ],
           "storageKey": null
         }
       ],
@@ -54,5 +103,6 @@ const node: ReaderFragment = {
   "type": "AlbumsPage",
   "abstractKey": null
 };
-(node as any).hash = 'f1652c769252d3eac8759f050e469447';
+})();
+(node as any).hash = '3218f0c16ee0b4f9698f9299bc172882';
 export default node;

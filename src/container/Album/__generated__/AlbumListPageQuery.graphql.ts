@@ -36,6 +36,13 @@ fragment AlbumList_albumsPage on AlbumsPage {
   data {
     id
     title
+    user {
+      id
+      name
+      username
+      email
+      website
+    }
   }
 }
 */
@@ -44,26 +51,15 @@ const node: ConcreteRequest = (function(){
 var v0 = {
   "alias": null,
   "args": null,
-  "concreteType": "Album",
-  "kind": "LinkedField",
-  "name": "data",
-  "plural": true,
-  "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "title",
-      "storageKey": null
-    }
-  ],
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "title",
   "storageKey": null
 };
 return {
@@ -81,7 +77,19 @@ return {
         "name": "albums",
         "plural": false,
         "selections": [
-          (v0/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Album",
+            "kind": "LinkedField",
+            "name": "data",
+            "plural": true,
+            "selections": [
+              (v0/*: any*/),
+              (v1/*: any*/)
+            ],
+            "storageKey": null
+          },
           {
             "args": null,
             "kind": "FragmentSpread",
@@ -108,19 +116,71 @@ return {
         "name": "albums",
         "plural": false,
         "selections": [
-          (v0/*: any*/)
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Album",
+            "kind": "LinkedField",
+            "name": "data",
+            "plural": true,
+            "selections": [
+              (v0/*: any*/),
+              (v1/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "User",
+                "kind": "LinkedField",
+                "name": "user",
+                "plural": false,
+                "selections": [
+                  (v0/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "name",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "username",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "email",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "website",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "dc3a635a8c282b58242ba138a24a73d4",
+    "cacheID": "75fb462294b9f8ad23171a9eb645f831",
     "id": null,
     "metadata": {},
     "name": "AlbumListPageQuery",
     "operationKind": "query",
-    "text": "query AlbumListPageQuery {\n  albums {\n    data {\n      id\n      title\n    }\n    ...AlbumList_albumsPage\n  }\n}\n\nfragment AlbumList_albumsPage on AlbumsPage {\n  data {\n    id\n    title\n  }\n}\n"
+    "text": "query AlbumListPageQuery {\n  albums {\n    data {\n      id\n      title\n    }\n    ...AlbumList_albumsPage\n  }\n}\n\nfragment AlbumList_albumsPage on AlbumsPage {\n  data {\n    id\n    title\n    user {\n      id\n      name\n      username\n      email\n      website\n    }\n  }\n}\n"
   }
 };
 })();

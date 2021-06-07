@@ -37,7 +37,7 @@ import AlbumApp from "container/Album/AlbumApp";
 // import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.js";
 // core components/views for RTL layout
 //import RTLPage from "views/RTLPage/RTLPage.js";
-
+{/* <Route path="/book/:bookId" exact component={BookDetailPage} /> */}
 const dashboardRoutes = [
   {
     path: "/albums",
@@ -46,6 +46,7 @@ const dashboardRoutes = [
     icon: Dashboard,
     component: AlbumApp,
     layout: "/admin",
+    showLeftMenu: true,
   },
   {
     path: "/dashboard",
@@ -54,6 +55,7 @@ const dashboardRoutes = [
     icon: Dashboard,
     component: DashboardPage,
     layout: "/admin",
+    showLeftMenu: true,
   },
   // {
   //   path: "/user",
